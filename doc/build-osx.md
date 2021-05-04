@@ -43,17 +43,17 @@ from the root of the repository.
 
 **Note**: You only need Berkeley DB if the wallet is enabled (see [*Disable-wallet mode*](/doc/build-osx.md#disable-wallet-mode)).
 
-Build Peercoin
+Build Neon
 
-1. Clone the Peercoin source code and cd into `peercoin`
+1. Clone the Neon source code and cd into `neon`
     ```shell
-    git clone https://github.com/peercoin/peercoin
-    cd peercoin
+    git clone https://github.com/neon/neon
+    cd neon
     ```
 
-2.  Build Peercoin:
+2.  Build Neon:
 
-    Configure and build the headless Peercoin binaries as well as the GUI (if Qt is found).
+    Configure and build the headless Neon binaries as well as the GUI (if Qt is found).
 
     You can disable the GUI build by passing `--without-gui` to configure.
     ```shell
@@ -73,7 +73,7 @@ Build Peercoin
     ```
 
 ## `disable-wallet` mode
-When the intention is to run only a P2P node without a wallet, Bitcoin Core may be
+When the intention is to run only a P2P node without a wallet, Neon Core may be
 compiled in `disable-wallet` mode with:
 ```shell
 ./configure --disable-wallet
@@ -84,33 +84,33 @@ In this case there is no dependency on Berkeley DB 4.8.
 Mining is also possible in disable-wallet mode using the `getblocktemplate` RPC call.
 
 ## Running
-Peercoin is now available at `./src/peercoind`
+Neon is now available at `./src/neond`
 
 Before running, you may create an empty configuration file:
 ```shell
-mkdir -p "/Users/${USER}/Library/Application Support/Peercoin"
+mkdir -p "/Users/${USER}/Library/Application Support/Neon"
 
-touch "/Users/${USER}/Library/Application Support/Peercoin/peercoin.conf"
+touch "/Users/${USER}/Library/Application Support/Neon/neon.conf"
 
-chmod 600 "/Users/${USER}/Library/Application Support/Peercoin/peercoin.conf"
+chmod 600 "/Users/${USER}/Library/Application Support/Neon/neon.conf"
 ```
 
-The first time you run peercoind, it will start downloading the blockchain. This process could
+The first time you run neond, it will start downloading the blockchain. This process could
 take several hours.
 
 You can monitor the download process by looking at the debug.log file:
 ```shell
-tail -f $HOME/Library/Application\ Support/Peercoin/debug.log
+tail -f $HOME/Library/Application\ Support/Neon/debug.log
 ```
 
 ## Other commands:
 ```shell
-./src/peercoind -daemon      # Starts the peercoin daemon.
-./src/peercoin-cli --help    # Outputs a list of command-line options.
-./src/peercoin-cli help      # Outputs a list of RPC commands when the daemon is running.
+./src/neond -daemon      # Starts the neon daemon.
+./src/neon-cli --help    # Outputs a list of command-line options.
+./src/neon-cli help      # Outputs a list of RPC commands when the daemon is running.
 ```
 
 ## Notes
 * Tested on OS X 10.12 Sierra through macOS 10.15 Catalina on 64-bit Intel
 processors only.
-* Building with downloaded Qt binaries is not officially supported. See the notes in [#7714](https://github.com/bitcoin/bitcoin/issues/7714).
+* Building with downloaded Qt binaries is not officially supported. See the notes in [#7714](https://github.com/neon/neon/issues/7714).

@@ -1,40 +1,40 @@
-Peercoin 0.10.0 BETA
+Neon 0.10.0 BETA
 
 Setup
 ---------------------
-Peercoin is the original Peercoin client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Peercoin transactions (which is currently less than one gigabyte); depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
+Neon is the original Neon client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Neon transactions (which is currently less than one gigabyte); depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
 
-To download Peercoin, visit [peercoin.net](https://peercoin.net/download).
+To download Neon, visit [neon.net](https://neon.net/download).
 
 Running
 ---------------------
-The following are some helpful notes on how to run Peercoin on your native platform.
+The following are some helpful notes on how to run Neon on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- `bin/peercoin-qt` (GUI) or
-- `bin/peercoind` (headless)
+- `bin/neon-qt` (GUI) or
+- `bin/neond` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run peercoin-qt.exe.
+Unpack the files into a directory, and then run neon-qt.exe.
 
 ### macOS
 
-Drag Peercoin to your applications folder, and then run Peercoin.
+Drag Neon to your applications folder, and then run Neon.
 
 ### Need Help?
 
-* See the documentation at the [Peercoin Wiki](https://docs.peercoin.net/)
+* See the documentation at the [Neon Wiki](https://docs.neon.net/)
 for help and more information.
-* Peercoin is very similar to bitcoin, so you can use their wiki [Bitcoin Wiki](https://en.bitcoin.it/wiki/Main_Page).
-* Ask for help on [#general](https://peercoin.chat/) on peercoin.chat.
+* Neon is very similar to neon, so you can use their wiki [Neon Wiki](https://en.neon.it/wiki/Main_Page).
+* Ask for help on [#general](https://neon.chat/) on neon.chat.
 
 Building
 ---------------------
-The following are developer notes on how to build Peercoin on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build Neon on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [Dependencies](dependencies.md)
 - [macOS Build Notes](build-osx.md)
@@ -43,11 +43,11 @@ The following are developer notes on how to build Peercoin on your native platfo
 - [FreeBSD Build Notes](build-freebsd.md)
 - [OpenBSD Build Notes](build-openbsd.md)
 - [NetBSD Build Notes](build-netbsd.md)
-- [Gitian Building Guide (External Link)](https://github.com/bitcoin-core/docs/blob/master/gitian-building.md)
+- [Gitian Building Guide (External Link)](https://github.com/neon-core/docs/blob/master/gitian-building.md)
 
 Development
 ---------------------
-The Peercoin repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The Neon repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Productivity Notes](productivity.md)
@@ -64,11 +64,11 @@ The Peercoin repo's [root README](/README.md) contains relevant information on t
 - [Benchmarking](benchmarking.md)
 
 ### Resources
-* Discuss on the [Peercoin](https://talk.peercoin.net/) forums.
+* Discuss on the [Neon](https://talk.neon.net/) forums.
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
-- [bitcoin.conf Configuration File](bitcoin-conf.md)
+- [neon.conf Configuration File](neon-conf.md)
 - [Files](files.md)
 - [Fuzz-testing](fuzzing.md)
 - [Reduce Memory](reduce-memory.md)

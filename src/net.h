@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_NET_H
-#define BITCOIN_NET_H
+#ifndef NEON_NET_H
+#define NEON_NET_H
 
 #include <addrdb.h>
 #include <addrman.h>
@@ -89,7 +89,7 @@ static const bool DEFAULT_FORCEDNSSEED = false;
 static const size_t DEFAULT_MAXRECEIVEBUFFER = 5 * 1000;
 static const size_t DEFAULT_MAXSENDBUFFER    = 1 * 1000;
 
-/** peercoin: Number of consecutive PoS headers are allowed from a single peer. Used to prevent out of memory attack. */
+/** neon: Number of consecutive PoS headers are allowed from a single peer. Used to prevent out of memory attack. */
 static const int32_t MAX_CONSECUTIVE_POS_HEADERS = 1000;
 
 // const unsigned int POW_HEADER_COOLING = 70;  - defined in protocol.cpp, so that it is visible to other files
@@ -804,7 +804,7 @@ public:
     const std::unique_ptr<CRollingBloomFilter> m_addr_known;
     bool fGetAddr{false};
     std::set<uint256> setKnown;
-    uint256 hashCheckpointKnown; // peercoin: known sent sync-checkpoint
+    uint256 hashCheckpointKnown; // neon: known sent sync-checkpoint
     std::chrono::microseconds m_next_addr_send GUARDED_BY(cs_sendProcessing){0};
     std::chrono::microseconds m_next_local_addr_send GUARDED_BY(cs_sendProcessing){0};
 
@@ -865,7 +865,7 @@ public:
     std::atomic<int64_t> nMinPingUsecTime{std::numeric_limits<int64_t>::max()};
     // Whether a ping is requested.
     std::atomic<bool> fPingQueued{false};
-    // peercoin: used to detect branch switches
+    // neon: used to detect branch switches
     uint256 lastAcceptedHeader;
 
     std::set<uint256> orphan_work_set;
@@ -1029,4 +1029,4 @@ inline std::chrono::microseconds PoissonNextSend(std::chrono::microseconds now, 
     return std::chrono::microseconds{PoissonNextSend(now.count(), average_interval.count())};
 }
 
-#endif // BITCOIN_NET_H
+#endif // NEON_NET_H

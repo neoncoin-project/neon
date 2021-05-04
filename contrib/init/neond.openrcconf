@@ -1,0 +1,33 @@
+# /etc/conf.d/neond: config file for /etc/init.d/neond
+
+# Config file location
+#NEOND_CONFIGFILE="/etc/neon/neon.conf"
+
+# What directory to write pidfile to?  (created and owned by $NEOND_USER)
+#NEOND_PIDDIR="/var/run/neond"
+
+# What filename to give the pidfile
+#NEOND_PIDFILE="${NEOND_PIDDIR}/neond.pid"
+
+# Where to write neond data (be mindful that the blockchain is large)
+#NEOND_DATADIR="/var/lib/neond"
+
+# User and group to own neond process
+#NEOND_USER="neon"
+#NEOND_GROUP="neon"
+
+# Path to neond executable
+#NEOND_BIN="/usr/bin/neond"
+
+# Nice value to run neond under
+#NEOND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+#NEOND_OPTS=""
+
+# The timeout in seconds OpenRC will wait for neond to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+NEOND_SIGTERM_TIMEOUT=600

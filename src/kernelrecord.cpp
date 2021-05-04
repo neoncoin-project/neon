@@ -47,7 +47,7 @@ vector<KernelRecord> KernelRecord::decomposeOutput(interfaces::Wallet& wallet, c
                 if (ExtractDestination(txOut.scriptPubKey, address)) {
                     if (address.type() != typeid(PKHash)) // only PKHash can mint at the moment
                         continue;
-                    // Sent to Bitcoin Address
+                    // Sent to Neon Address
                     addrStr = EncodeDestination(address);
                 } else {
                     // Sent to IP, or other non-address transaction like OP_EVAL

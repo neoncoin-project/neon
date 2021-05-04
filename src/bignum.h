@@ -1,9 +1,9 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2011-2021 The Peercoin developers
+// Copyright (c) 2009-2012 The Neon developers
+// Copyright (c) 2011-2021 The Neon developers
 // Copyright (c) 2018-2018 The Emercoin developers
-#ifndef BITCOIN_BIGNUM_H
-#define BITCOIN_BIGNUM_H
+#ifndef NEON_BIGNUM_H
+#define NEON_BIGNUM_H
 
 #include <stdexcept>
 #include <vector>
@@ -271,7 +271,7 @@ public:
     // and  0xc0de000000 is compact (0x0600c0de)
     // (0x05c0de00) would be -0x40de000000
     //
-    // Bitcoin only uses this "compact" format for encoding difficulty
+    // Neon only uses this "compact" format for encoding difficulty
     // targets, which are unsigned 256bit quantities.  Thus, all the
     // complexities of the sign bit and using base 256 are probably an
     // implementation accident.

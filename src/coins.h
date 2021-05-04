@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_COINS_H
-#define BITCOIN_COINS_H
+#ifndef NEON_COINS_H
+#define NEON_COINS_H
 
 #include <primitives/transaction.h>
 #include <compressor.h>
@@ -39,10 +39,10 @@ public:
     //! at which height this containing transaction was included in the active block chain
     uint32_t nHeight : 31;
 
-    // peercoin: whether transaction is a coinstake
+    // neon: whether transaction is a coinstake
     bool fCoinStake;
 
-    // peercoin: transaction timestamp
+    // neon: transaction timestamp
     unsigned int nTime;
 
     //! construct a Coin from a CTxOut and height/coinbase information.
@@ -66,7 +66,7 @@ public:
         return fCoinBase;
     }
 
-    bool IsCoinStake() const { // peercoin: coinstake
+    bool IsCoinStake() const { // neon: coinstake
         return fCoinStake;
     }
 
@@ -76,10 +76,10 @@ public:
         uint32_t code = nHeight * uint32_t{2} + fCoinBase;
         ::Serialize(s, VARINT(code));
         ::Serialize(s, Using<TxOutCompression>(out));
-        // peercoin flags
+        // neon flags
         unsigned int nFlag = fCoinStake? 1 : 0;
         ::Serialize(s, VARINT(nFlag));
-        // peercoin transaction timestamp
+        // neon transaction timestamp
         ::Serialize(s, VARINT(nTime));
     }
 
@@ -90,11 +90,11 @@ public:
         nHeight = code >> 1;
         fCoinBase = code & 1;
         ::Unserialize(s, Using<TxOutCompression>(out));
-        // peercoin flags
+        // neon flags
         unsigned int nFlag = 0;
         ::Unserialize(s, VARINT(nFlag));
         fCoinStake = nFlag & 1;
-        // peercoin transaction timestamp
+        // neon transaction timestamp
         ::Unserialize(s, VARINT(nTime));
     }
 
@@ -315,7 +315,7 @@ public:
     size_t DynamicMemoryUsage() const;
 
     /**
-     * Amount of bitcoins coming in to a transaction
+     * Amount of neons coming in to a transaction
      * Note that lightweight clients may not know anything besides the hash of previous transactions,
      * so may not be able to calculate this.
      *
@@ -352,7 +352,7 @@ const Coin& AccessByTxid(const CCoinsViewCache& cache, const uint256& txid);
 /**
  * This is a minimally invasive approach to shutdown on LevelDB read errors from the
  * chainstate, while keeping user interface out of the common library, which is shared
- * between bitcoind, and bitcoin-qt and non-server tools.
+ * between neond, and neon-qt and non-server tools.
  *
  * Writes do not need similar protection, as failure to write is handled by the caller.
 */
@@ -373,4 +373,4 @@ private:
 
 };
 
-#endif // BITCOIN_COINS_H
+#endif // NEON_COINS_H

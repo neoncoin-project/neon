@@ -2,20 +2,20 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CLIENTVERSION_H
-#define BITCOIN_CLIENTVERSION_H
+#ifndef NEON_CLIENTVERSION_H
+#define NEON_CLIENTVERSION_H
 
 #if defined(HAVE_CONFIG_H)
-#include <config/bitcoin-config.h>
+#include <config/neon-config.h>
 #endif //HAVE_CONFIG_H
 
 // Check that required client information is defined
 #if !defined(CLIENT_VERSION_MAJOR) || !defined(CLIENT_VERSION_MINOR) || !defined(CLIENT_VERSION_REVISION) || !defined(CLIENT_VERSION_BUILD) || !defined(CLIENT_VERSION_IS_RELEASE) || !defined(COPYRIGHT_YEAR)
-#error Client version information missing: version is not defined by bitcoin-config.h or in any other way
+#error Client version information missing: version is not defined by neon-config.h or in any other way
 #endif
 
-#if !defined(PEERCOIN_VERSION_MAJOR) || !defined(PEERCOIN_VERSION_MINOR) || !defined(PEERCOIN_VERSION_REVISION) || !defined(PEERCOIN_VERSION_BUILD)
-#error Client version information missing: version is not defined by bitcoin-config.h or in any other way
+#if !defined(NEON_VERSION_MAJOR) || !defined(NEON_VERSION_MINOR) || !defined(NEON_VERSION_REVISION) || !defined(NEON_VERSION_BUILD)
+#error Client version information missing: version is not defined by neon-config.h or in any other way
 #endif
 
 /**
@@ -29,7 +29,7 @@
 #define COPYRIGHT_STR "2009-" STRINGIZE(COPYRIGHT_YEAR) " " COPYRIGHT_HOLDERS_FINAL
 
 /**
- * bitcoind-res.rc includes this file, but it cannot cope with real c++ code.
+ * neond-res.rc includes this file, but it cannot cope with real c++ code.
  * WINDRES_PREPROC is defined to indicate that its pre-processor is running.
  * Anything other than a define should be guarded below.
  */
@@ -45,12 +45,12 @@ static const int CLIENT_VERSION =
                          +     100 * CLIENT_VERSION_REVISION
                          +       1 * CLIENT_VERSION_BUILD;
 
-// note: peercoin version is used for display purpose AND to accept alerts
-static const int PEERCOIN_VERSION =
-                           1000000 * PEERCOIN_VERSION_MAJOR
-                         +   10000 * PEERCOIN_VERSION_MINOR
-                         +     100 * PEERCOIN_VERSION_REVISION
-                         +       1 * PEERCOIN_VERSION_BUILD;
+// note: neon version is used for display purpose AND to accept alerts
+static const int NEON_VERSION =
+                           1000000 * NEON_VERSION_MAJOR
+                         +   10000 * NEON_VERSION_MINOR
+                         +     100 * NEON_VERSION_REVISION
+                         +       1 * NEON_VERSION_BUILD;
 
 extern const std::string CLIENT_NAME;
 extern const std::string CLIENT_BUILD;
@@ -61,4 +61,4 @@ std::string FormatSubVersion(const std::string& name, int nClientVersion, const 
 
 #endif // WINDRES_PREPROC
 
-#endif // BITCOIN_CLIENTVERSION_H
+#endif // NEON_CLIENTVERSION_H

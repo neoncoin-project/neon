@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CONSENSUS_TX_VERIFY_H
-#define BITCOIN_CONSENSUS_TX_VERIFY_H
+#ifndef NEON_CONSENSUS_TX_VERIFY_H
+#define NEON_CONSENSUS_TX_VERIFY_H
 
 #include <amount.h>
 
@@ -76,8 +76,8 @@ bool EvaluateSequenceLocks(const CBlockIndex& block, std::pair<int, int64_t> loc
  */
 bool SequenceLocks(const CTransaction &tx, int flags, std::vector<int>* prevHeights, const CBlockIndex& block);
 
-// peercoin: minimum fee for transaction to be accepted in a blockchain.
+// neon: minimum fee for transaction to be accepted in a blockchain.
 CAmount GetMinFee(const CTransaction& tx);
 CAmount GetMinFee(size_t nBytes, uint32_t nTime);
 
-#endif // BITCOIN_CONSENSUS_TX_VERIFY_H
+#endif // NEON_CONSENSUS_TX_VERIFY_H

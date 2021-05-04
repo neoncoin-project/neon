@@ -54,7 +54,7 @@ static UniValue GetNetworkHashPS(int lookup, int height) {
     if (pb == nullptr || !pb->nHeight)
         return 0;
 
-    //ppcTODO - redo this to fit peercoin
+    //neonTODO - redo this to fit neon
     // If lookup is -1, then use blocks since last difficulty change.
 //    if (lookup <= 0)
 //        lookup = pb->nHeight % Params().GetConsensus().DifficultyAdjustmentInterval() + 1;
@@ -105,7 +105,7 @@ static UniValue getnetworkhashps(const JSONRPCRequest& request)
     return GetNetworkHashPS(!request.params[0].isNull() ? request.params[0].get_int() : 120, !request.params[1].isNull() ? request.params[1].get_int() : -1);
 }
 
-// peercoin: get network Gh/s estimate
+// neon: get network Gh/s estimate
 UniValue getnetworkghps(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 0)
@@ -167,9 +167,9 @@ static UniValue generateBlocks(const CTxMemPool& mempool, const CScript& coinbas
             continue;
         }
 
-        // peercoin: sign block
+        // neon: sign block
         // rfc6: we sign proof of work blocks only before 0.8 fork
-        if (!IsBTC16BIPsEnabled(pblock->GetBlockTime()) && !SignBlock(*pblock, *pwallet))
+        if (!IsNEON16BIPsEnabled(pblock->GetBlockTime()) && !SignBlock(*pblock, *pwallet))
             throw JSONRPCError(-100, "Unable to sign block, wallet locked?");
 
         std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(*pblock);
@@ -188,7 +188,7 @@ static UniValue generatetodescriptor(const JSONRPCRequest& request)
         "\nMine blocks immediately to a specified descriptor (before the RPC call returns)\n",
         {
             {"num_blocks", RPCArg::Type::NUM, RPCArg::Optional::NO, "How many blocks are generated immediately."},
-            {"descriptor", RPCArg::Type::STR, RPCArg::Optional::NO, "The descriptor to send the newly generated bitcoin to."},
+            {"descriptor", RPCArg::Type::STR, RPCArg::Optional::NO, "The descriptor to send the newly generated neon to."},
             {"maxtries", RPCArg::Type::NUM, /* default */ "1000000", "How many iterations to try."},
         },
         RPCResult{
@@ -241,7 +241,7 @@ static UniValue generatetoaddress(const JSONRPCRequest& request)
                 "\nMine blocks immediately to a specified address (before the RPC call returns)\n",
                 {
                     {"nblocks", RPCArg::Type::NUM, RPCArg::Optional::NO, "How many blocks are generated immediately."},
-                    {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The address to send the newly generated peercoin to."},
+                    {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The address to send the newly generated neon to."},
                     {"maxtries", RPCArg::Type::NUM, /* default */ "1000000", "How many iterations to try."},
                 },
                 RPCResult{
@@ -252,7 +252,7 @@ static UniValue generatetoaddress(const JSONRPCRequest& request)
                 RPCExamples{
             "\nGenerate 11 blocks to myaddress\n"
             + HelpExampleCli("generatetoaddress", "11 \"myaddress\"")
-            + "If you are running the Peercoin wallet, you can get a new address to send the newly generated peercoin to with:\n"
+            + "If you are running the Neon wallet, you can get a new address to send the newly generated neon to with:\n"
             + HelpExampleCli("getnewaddress", "")
                 },
             }.Check(request);
@@ -346,10 +346,10 @@ static UniValue getblocktemplate(const JSONRPCRequest& request)
                 "\nIf the request parameters include a 'mode' key, that is used to explicitly select between the default 'template' request or a 'proposal'.\n"
                 "It returns data needed to construct a block to work on.\n"
                 "For full specification, see BIPs 22, 23, 9, and 145:\n"
-                "    https://github.com/bitcoin/bips/blob/master/bip-0022.mediawiki\n"
-                "    https://github.com/bitcoin/bips/blob/master/bip-0023.mediawiki\n"
-                "    https://github.com/bitcoin/bips/blob/master/bip-0009.mediawiki#getblocktemplate_changes\n"
-                "    https://github.com/bitcoin/bips/blob/master/bip-0145.mediawiki\n",
+                "    https://github.com/neon/bips/blob/master/bip-0022.mediawiki\n"
+                "    https://github.com/neon/bips/blob/master/bip-0023.mediawiki\n"
+                "    https://github.com/neon/bips/blob/master/bip-0009.mediawiki#getblocktemplate_changes\n"
+                "    https://github.com/neon/bips/blob/master/bip-0145.mediawiki\n",
                 {
                     {"template_request", RPCArg::Type::OBJ, "{}", "Format of the template",
                         {
@@ -589,7 +589,7 @@ static UniValue getblocktemplate(const JSONRPCRequest& request)
     pblock->nNonce = 0;
 
     // NOTE: If at some point we support pre-segwit miners post-segwit-activation, this needs to take segwit support into consideration
-    const bool fPreSegWit = !IsBTC16BIPsEnabled(::ChainActive().Tip()->nTime);
+    const bool fPreSegWit = !IsNEON16BIPsEnabled(::ChainActive().Tip()->nTime);
 
     UniValue aCaps(UniValue::VARR); aCaps.push_back("proposal");
 
@@ -717,7 +717,7 @@ static UniValue submitblock(const JSONRPCRequest& request)
     // We allow 2 arguments for compliance with BIP22. Argument 2 is ignored.
             RPCHelpMan{"submitblock",
                 "\nAttempts to submit new block to network.\n"
-                "See https://en.bitcoin.it/wiki/BIP_0022 for full specification.\n",
+                "See https://en.neon.it/wiki/BIP_0022 for full specification.\n",
                 {
                     {"hexdata", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "the hex-encoded block data to submit"},
                     {"dummy", RPCArg::Type::STR, /* default */ "ignored", "dummy value, for compatibility with BIP22. This value is ignored."},
@@ -753,16 +753,16 @@ static UniValue submitblock(const JSONRPCRequest& request)
         }
     }
 
-    // peercoin: check block before attempting to sign it
+    // neon: check block before attempting to sign it
     BlockValidationState state;
     if (!CheckBlock(block, state, Params().GetConsensus(), true,  true, false)) {
         LogPrintf("SubmitBlock: %s\n", state.ToString());
         throw JSONRPCError(-100, "Block failed CheckBlock() function.");
         }
 
-    // peercoin: sign block
+    // neon: sign block
     // rfc6: sign proof of stake blocks only after 0.8 fork
-    if ((block.IsProofOfStake() || !IsBTC16BIPsEnabled(block.GetBlockTime())) && !SignBlock(block, *pwallet))
+    if ((block.IsProofOfStake() || !IsNEON16BIPsEnabled(block.GetBlockTime())) && !SignBlock(block, *pwallet))
         throw JSONRPCError(-100, "Unable to sign block, wallet locked?");
 
     {

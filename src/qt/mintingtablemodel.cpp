@@ -7,7 +7,7 @@
 //#include <qt/guiutil.h>
 #include <qt/walletmodel.h>
 #include <qt/guiconstants.h>
-#include <qt/bitcoinunits.h>
+#include <qt/neonunits.h>
 #include <qt/optionsmodel.h>
 #include <qt/addresstablemodel.h>
 
@@ -239,7 +239,7 @@ public:
     QString describe(TransactionRecord *rec)
     {
         {
-            return TransactionDesc::toHTML(walletModel->node(), walletModel->wallet(), rec, BitcoinUnits::BTC);  
+            return TransactionDesc::toHTML(walletModel->node(), walletModel->wallet(), rec, NeonUnits::NEON);  
         }
         return QString("");
     }
@@ -491,7 +491,7 @@ QString MintingTableModel::formatTxAge(const KernelRecord *wtx) const
 
 QString MintingTableModel::formatTxBalance(const KernelRecord *wtx) const
 {
-    return BitcoinUnits::format(walletModel->getOptionsModel()->getDisplayUnit(), wtx->nValue);
+    return NeonUnits::format(walletModel->getOptionsModel()->getDisplayUnit(), wtx->nValue);
 }
 
 QVariant MintingTableModel::headerData(int section, Qt::Orientation orientation, int role) const

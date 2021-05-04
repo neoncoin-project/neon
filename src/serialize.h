@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_SERIALIZE_H
-#define BITCOIN_SERIALIZE_H
+#ifndef NEON_SERIALIZE_H
+#define NEON_SERIALIZE_H
 
 #include <compat/endian.h>
 
@@ -183,7 +183,7 @@ enum
     SER_DISK            = (1 << 1),
     SER_GETHASH         = (1 << 2),
 
-    SER_POSMARKER       = (1 << 18),  // peercoin: for sending block headers with PoS marker, to allow headers-first syncronization
+    SER_POSMARKER       = (1 << 18),  // neon: for sending block headers with PoS marker, to allow headers-first syncronization
 };
 
 //! Convert the reference base type to X, without changing constness or reference type.
@@ -1153,4 +1153,4 @@ size_t GetSerializeSizeMany(int nVersion, const T&... t)
     return sc.size();
 }
 
-#endif // BITCOIN_SERIALIZE_H
+#endif // NEON_SERIALIZE_H

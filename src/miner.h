@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_MINER_H
-#define BITCOIN_MINER_H
+#ifndef NEON_MINER_H
+#define NEON_MINER_H
 
 #include <optional.h>
 #include <primitives/block.h>
@@ -210,4 +210,4 @@ namespace boost {
 
 void MintStake(boost::thread_group& threadGroup, std::shared_ptr<CWallet> pwallet, CConnman* connman, CTxMemPool* mempool);
 
-#endif // BITCOIN_MINER_H
+#endif // NEON_MINER_H

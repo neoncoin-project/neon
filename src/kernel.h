@@ -1,8 +1,8 @@
-// Copyright (c) 2012-2021 The Peercoin developers
+// Copyright (c) 2012-2021 The Neon developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef PEERCOIN_KERNEL_H
-#define PEERCOIN_KERNEL_H
+#ifndef NEON_KERNEL_H
+#define NEON_KERNEL_H
 
 #include <primitives/transaction.h> // CTransaction(Ref)
 
@@ -31,8 +31,8 @@ bool IsProtocolV05(unsigned int nTimeTx);
 bool IsProtocolV06(const CBlockIndex *pindexPrev);
 // Whether a given transaction is subject to new v0.7 protocol
 bool IsProtocolV07(unsigned int nTimeTx);
-// Whether a given block is subject to new BIPs from bitcoin 0.16.x
-bool IsBTC16BIPsEnabled(uint32_t nTimeTx);
+// Whether a given block is subject to new BIPs from neon 0.16.x
+bool IsNEON16BIPsEnabled(uint32_t nTimeTx);
 // Whether a given timestamp is subject to new v0.9 protocol
 bool IsProtocolV09(unsigned int nTimeTx);
 
@@ -58,7 +58,7 @@ bool CheckStakeModifierCheckpoints(int nHeight, unsigned int nStakeModifierCheck
 
 bool IsSuperMajority(int minVersion, const CBlockIndex* pstart, unsigned int nRequired, unsigned int nToCheck);
 
-// peercoin: entropy bit for stake modifier if chosen by modifier
+// neon: entropy bit for stake modifier if chosen by modifier
 unsigned int GetStakeEntropyBit(const CBlock& block);
 
-#endif // PEERCOIN_KERNEL_H
+#endif // NEON_KERNEL_H

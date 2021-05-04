@@ -3,15 +3,15 @@
 *.exe
 *.pdb
 src/*/*.exe
-src/peercoin
-src/peercoind
-src/peercoin-cli
-src/peercoin-tx
-src/peercoin-wallet
+src/neon
+src/neond
+src/neon-cli
+src/neon-tx
+src/neon-wallet
 src/test/fuzz
 !src/test/fuzz/*.*
-src/test/test_peercoin
-src/qt/test/test_peercoin-qt
+src/test/test_neon
+src/qt/test/test_neon-qt
 
 # autoreconf
 Makefile.in
@@ -35,8 +35,8 @@ config.log
 config.status
 configure
 libtool
-src/config/bitcoin-config.h
-src/config/bitcoin-config.h.in
+src/config/neon-config.h
+src/config/neon-config.h.in
 src/config/stamp-h1
 src/obj
 share/setup.nsi
@@ -50,11 +50,11 @@ src/qt/forms/ui_*.h
 
 src/qt/test/moc*.cpp
 
-src/qt/bitcoin-qt.config
-src/qt/bitcoin-qt.creator
-src/qt/bitcoin-qt.creator.user
-src/qt/bitcoin-qt.files
-src/qt/bitcoin-qt.includes
+src/qt/neon-qt.config
+src/qt/neon-qt.creator
+src/qt/neon-qt.creator.user
+src/qt/neon-qt.files
+src/qt/neon-qt.includes
 
 .deps
 .dirstamp
@@ -67,8 +67,8 @@ src/qt/bitcoin-qt.includes
 *.pyc
 *.o
 *.o-*
-.ppcoin
-.peercoin
+.neonoin
+.neon
 *.a
 *.pb.cc
 *.pb.h
@@ -93,9 +93,9 @@ src/qt/bitcoin-qt.includes
 *.qm
 Makefile
 !depends/Makefile
-src/qt/peercoin-qt
-PPCoin-Qt.app
-Peercoin-Qt.app
+src/qt/neon-qt
+NEONoin-Qt.app
+Neon-Qt.app
 background.tiff*
 
 # Qt Creator
@@ -103,8 +103,8 @@ Makefile.am.user
 
 # Unit-tests
 Makefile.test
-ppcoin-qt_test
-peercoin-qt_test
+neonoin-qt_test
+neon-qt_test
 
 # Resources cpp
 qrc_*.cpp
@@ -120,7 +120,7 @@ releases
 *.gcno
 *.gcda
 /*.info
-test_bitcoin.coverage/
+test_neon.coverage/
 total.coverage/
 coverage_percent.txt
 
@@ -135,7 +135,7 @@ test/cache/*
 
 /doc/doxygen/
 
-libbitcoinconsensus.pc
+libneonconsensus.pc
 contrib/devtools/split-debug.sh
 
 #python stuff

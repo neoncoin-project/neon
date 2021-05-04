@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CHAIN_H
-#define BITCOIN_CHAIN_H
+#ifndef NEON_CHAIN_H
+#define NEON_CHAIN_H
 
 #include <arith_uint256.h>
 #include <consensus/params.h>
@@ -36,7 +36,7 @@ static constexpr int64_t TIMESTAMP_WINDOW = MAX_FUTURE_BLOCK_TIME_PREV9;
  * Maximum gap between node time and block time used
  * for the "Catching up..." mode in GUI.
  *
- * Ref: https://github.com/bitcoin/bitcoin/pull/1026
+ * Ref: https://github.com/neon/neon/pull/1026
  */
 static constexpr int64_t MAX_BLOCK_TIME_GAP = 90 * 60;
 
@@ -189,13 +189,13 @@ public:
     //! (memory only) Maximum nTime in the chain up to and including this block.
     unsigned int nTimeMax{0};
 
-// peercoin
-    // peercoin: money supply related block index fields
+// neon
+    // neon: money supply related block index fields
     int64_t nMint{0};
     int64_t nMoneySupply{0};
 
-    // peercoin: proof-of-stake related block index fields
-    unsigned int nFlags{0};  // peercoin: block index flags
+    // neon: proof-of-stake related block index fields
+    unsigned int nFlags{0};  // neon: block index flags
     enum
     {
         BLOCK_PROOF_OF_STAKE = (1 << 0), // is proof-of-stake block
@@ -247,7 +247,7 @@ public:
         if (fGeneratedStakeModifier)
             nFlags |= BLOCK_STAKE_MODIFIER;
     }
-// peercoin end
+// neon end
 
     CBlockIndex()
     {
@@ -320,7 +320,7 @@ public:
     }
 
     /**
-     * Duplicate from bitcoinrpc that originaly define this method.
+     * Duplicate from neonrpc that originaly define this method.
      * May require some cleanup since this method should be available both for rpc
      * and qt clients.
      */
@@ -544,4 +544,4 @@ public:
 
 const CBlockIndex* GetLastBlockIndex(const CBlockIndex* pindex, bool fProofOfStake);
 
-#endif // BITCOIN_CHAIN_H
+#endif // NEON_CHAIN_H

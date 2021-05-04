@@ -34,7 +34,7 @@
 #include <kernel.h>
 
 #if defined(NDEBUG)
-# error "Peercoin cannot be compiled without assertions."
+# error "Neon cannot be compiled without assertions."
 #endif
 
 /** Expiration time for orphan transactions in seconds */
@@ -167,7 +167,7 @@ namespace {
     };
     std::map<uint256, std::pair<NodeId, std::list<QueuedBlock>::iterator> > mapBlocksInFlight GUARDED_BY(cs_main);
 
-    /** peercoin: blocks that are waiting to be processed, the key points to previous CBlockIndex entry */
+    /** neon: blocks that are waiting to be processed, the key points to previous CBlockIndex entry */
     struct WaitElement {
         std::shared_ptr<CBlock> pblock;
             int64_t time;
@@ -1560,7 +1560,7 @@ void static ProcessGetBlockData(CNode* pfrom, const CChainParams& chainparams, c
             // Bypass PushInventory, this must send even if redundant,
             // and we want it right after the last block so they don't
             // wait for other stuff first.
-            // peercoin: send latest proof-of-work block to allow the
+            // neon: send latest proof-of-work block to allow the
             // download node to accept as orphan (proof-of-stake
             // block might be rejected by stake connection check)
             std::vector<CInv> vInv;
@@ -1922,7 +1922,7 @@ void static ProcessOrphanTx(CConnman* connman, CTxMemPool& mempool, std::set<uin
                     orphan_state.GetResult() == TxValidationResult::TX_INPUTS_NOT_STANDARD) {
                 // Do not use rejection cache for witness transactions or
                 // witness-stripped transactions, as they can have been malleated.
-                // See https://github.com/bitcoin/bitcoin/issues/8279 for details.
+                // See https://github.com/neon/neon/issues/8279 for details.
                 // However, if the transaction failed for TX_INPUTS_NOT_STANDARD,
                 // then we know that the witness was irrelevant to the policy
                 // failure, since this check depends only on the txid
@@ -2099,7 +2099,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
         }
 
 #ifdef ENABLE_CHECKPOINTS
-        // peercoin: relay sync-checkpoint
+        // neon: relay sync-checkpoint
         {
             LOCK(cs_main);
             if (!checkpointMessage.IsNull())
@@ -2107,7 +2107,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
         }
 #endif
 
-        // peercoin: relay alerts
+        // neon: relay alerts
         {
             LOCK(cs_mapAlerts);
             for (auto& item : mapAlerts)
@@ -2140,7 +2140,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
         }
 
 #ifdef ENABLE_CHECKPOINTS
-        // peercoin: ask for pending sync-checkpoint if any
+        // neon: ask for pending sync-checkpoint if any
         if (!::ChainstateActive().IsInitialBlockDownload())
             AskForPendingSyncCheckpoint(pfrom);
 #endif
@@ -2155,7 +2155,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
         return false;
     }
 
-    // peercoin: set/unset network serialization mode for new clients
+    // neon: set/unset network serialization mode for new clients
     if (pfrom->nVersion <= OLD_VERSION)
         vRecv.SetType(vRecv.GetType() & ~SER_POSMARKER);
     else
@@ -2425,7 +2425,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
             if (pindex->GetBlockHash() == hashStop)
             {
                 LogPrint(BCLog::NET, "  getblocks stopping at %d %s\n", pindex->nHeight, pindex->GetBlockHash().ToString());
-                // peercoin: tell downloading node about the latest block if it's
+                // neon: tell downloading node about the latest block if it's
                 // without risk being rejected due to stake connection check
                 if (hashStop != ::ChainActive().Tip()->GetBlockHash() && pindex->GetBlockTime() + Params().GetConsensus().nStakeMinAge > ::ChainActive().Tip()->GetBlockTime())
                     pfrom->PushInventory(CInv(MSG_BLOCK, ::ChainActive().Tip()->GetBlockHash()));
@@ -2647,7 +2647,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
                     state.GetResult() == TxValidationResult::TX_INPUTS_NOT_STANDARD) {
                 // Do not use rejection cache for witness transactions or
                 // witness-stripped transactions, as they can have been malleated.
-                // See https://github.com/bitcoin/bitcoin/issues/8279 for details.
+                // See https://github.com/neon/neon/issues/8279 for details.
                 // However, if the transaction failed for TX_INPUTS_NOT_STANDARD,
                 // then we know that the witness was irrelevant to the policy
                 // failure, since this check depends only on the txid
@@ -3043,7 +3043,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
             ReadCompactSize(vRecv); // ignore tx count; assume it is 0.
             ReadCompactSize(vRecv); // needed for vchBlockSig.
 
-            // peercoin: quick check to see if we should ban peers for PoS spam
+            // neon: quick check to see if we should ban peers for PoS spam
             // note: at this point we don't know if PoW headers are valid - we just assume they are
             // so we need to update pfrom->nPoSTemperature once we actualy check them
             bool fPoS = headers[n].nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE;
@@ -3107,7 +3107,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
                     return error("this block does not connect to any valid known blocks");
                 }
             }
-            // peercoin: store in memory until we can connect it to some chain
+            // neon: store in memory until we can connect it to some chain
             WaitElement we; we.pblock = pblock2; we.time = nTimeNow;
             mapBlocksWait[headerPrev] = we;
         }
@@ -3117,7 +3117,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
             pindexLastAccepted = ::ChainActive().Tip();
         bool fContinue = true;
 
-        // peercoin: accept as many blocks as we possibly can from mapBlocksWait
+        // neon: accept as many blocks as we possibly can from mapBlocksWait
         while (fContinue) {
             fContinue = false;
             bool fSelected = false;
@@ -3127,7 +3127,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
 
             {
             LOCK(cs_main);
-            // peercoin: try to select next block in a constant time
+            // neon: try to select next block in a constant time
             std::map<CBlockIndex*, WaitElement>::iterator it = mapBlocksWait.find(pindexLastAccepted);
             if (it != mapBlocksWait.end() && pindexLastAccepted != nullptr) {
                 pindexPrev = it->first;
@@ -4224,7 +4224,7 @@ bool PeerLogicValidation::SendMessages(CNode* pto)
             NodeId staller = -1;
             FindNextBlocksToDownload(pto->GetId(), MAX_BLOCKS_IN_TRANSIT_PER_PEER - state.nBlocksInFlight, vToDownload, staller, consensusParams);
             for (const CBlockIndex *pindex : vToDownload) {
-                uint32_t nFetchFlags = IsBTC16BIPsEnabled(pindex->nTime) ? GetFetchFlags(pto) : false;
+                uint32_t nFetchFlags = IsNEON16BIPsEnabled(pindex->nTime) ? GetFetchFlags(pto) : false;
                 vGetData.push_back(CInv(MSG_BLOCK | nFetchFlags, pindex->GetBlockHash()));
                 MarkBlockAsInFlight(m_mempool, pto->GetId(), pindex->GetBlockHash(), pindex);
                 LogPrint(BCLog::NET, "Requesting block %s (%d) peer=%d\n", pindex->GetBlockHash().ToString(),

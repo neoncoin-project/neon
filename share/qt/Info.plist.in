@@ -11,34 +11,34 @@
   </array>
 
   <key>CFBundleIconFile</key>
-  <string>peercoin.icns</string>
+  <string>neon.icns</string>
 
   <key>CFBundlePackageType</key>
   <string>APPL</string>
 
   <key>NSHumanReadableCopyright</key>
-  <string>@PEERCOIN_VERSION_MAJOR@.@PEERCOIN_VERSION_MINOR@.@PEERCOIN_VERSION_REVISION@.@PEERCOIN_VERSION_BUILD@, Copyright © 2011-@COPYRIGHT_YEAR@ @COPYRIGHT_HOLDERS_FINAL@</string>
+  <string>@NEON_VERSION_MAJOR@.@NEON_VERSION_MINOR@.@NEON_VERSION_REVISION@.@NEON_VERSION_BUILD@, Copyright © 2011-@COPYRIGHT_YEAR@ @COPYRIGHT_HOLDERS_FINAL@</string>
 
   <key>CFBundleShortVersionString</key>
-  <string>@PEERCOIN_VERSION_MAJOR@.@PEERCOIN_VERSION_MINOR@.@PEERCOIN_VERSION_REVISION@</string>
+  <string>@NEON_VERSION_MAJOR@.@NEON_VERSION_MINOR@.@NEON_VERSION_REVISION@</string>
 
   <key>CFBundleVersion</key>
-  <string>@PEERCOIN_VERSION_MAJOR@.@PEERCOIN_VERSION_MINOR@.@PEERCOIN_VERSION_REVISION@</string>
+  <string>@NEON_VERSION_MAJOR@.@NEON_VERSION_MINOR@.@NEON_VERSION_REVISION@</string>
 
   <key>CFBundleSignature</key>
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>Peercoin-Qt</string>
+  <string>Neon-Qt</string>
 
   <key>CFBundleName</key>
-  <string>Peercoin-Qt</string>
+  <string>Neon-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>org.peercoin.Peercoin-Qt</string>
+  <string>org.neon.Neon-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -46,10 +46,10 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>org.peercoin.PeercoinPayment</string>
+      <string>org.neon.NeonPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>peercoin</string>
+        <string>neon</string>
       </array>
     </dict>
   </array>

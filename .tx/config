@@ -1,8 +1,8 @@
 [main]
 host = https://www.transifex.com
 
-[peercoin.qt-translation-010x]
-file_filter = src/qt/locale/bitcoin_<lang>.ts
-source_file = src/qt/locale/bitcoin_en.ts
+[neon.qt-translation-010x]
+file_filter = src/qt/locale/neon_<lang>.ts
+source_file = src/qt/locale/neon_en.ts
 source_lang = en
 

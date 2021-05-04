@@ -1,12 +1,12 @@
 UNIX BUILD NOTES
 ====================
-Some notes on how to build Peercoin in Unix.
+Some notes on how to build Neon in Unix.
 
 (For BSD specific instructions, see `build-*bsd.md` in this directory.)
 
 Note
 ---------------------
-Always use absolute paths to configure and compile Peercoin and the dependencies,
+Always use absolute paths to configure and compile Neon and the dependencies,
 For example, when specifying the path of the dependency:
 
 	../dist/configure --enable-cxx --disable-shared --with-pic --prefix=$BDB_PREFIX
@@ -24,7 +24,7 @@ make
 make install # optional
 ```
 
-This will build peercoin-qt as well, if the dependencies are met.
+This will build neon-qt as well, if the dependencies are met.
 
 Dependencies
 ---------------------
@@ -53,7 +53,7 @@ Memory Requirements
 --------------------
 
 C++ compilers are memory-hungry. It is recommended to have at least 1.5 GB of
-memory available when compiling Peercoin. On systems with less, gcc can be
+memory available when compiling Neon. On systems with less, gcc can be
 tuned to conserve memory with additional CXXFLAGS:
 
 
@@ -83,7 +83,7 @@ Now, you can either build from self-compiled [depends](/depends/README.md) or in
     sudo apt-get install libevent-dev libboost-system-dev libboost-filesystem-dev libboost-test-dev libboost-thread-dev
 
 BerkeleyDB is required for the wallet functionality.
-Historically Peercoin was first deployed with now deprecated BerkeleyDB-4.8, which has resulted in the need to upkeep the compatibility with those ancient deployments to this day. BerkeleyDB-4.8 is not compatible with more modern BerkeleyDB-5.1 and BerkeleyDB-5.3. Peercoin has inherited this in the first versions and this is why Peercoin is still officially shipped out with BerkeleyDB-4.8.
+Historically Neon was first deployed with now deprecated BerkeleyDB-4.8, which has resulted in the need to upkeep the compatibility with those ancient deployments to this day. BerkeleyDB-4.8 is not compatible with more modern BerkeleyDB-5.1 and BerkeleyDB-5.3. Neon has inherited this in the first versions and this is why Neon is still officially shipped out with BerkeleyDB-4.8.
 However if you running a new wallet on a new installation there is absolutely no need to run old and deprecated BerkeleyDB-4.8. Just use the one avaliable in the repository of your distribution.
 
 Ubuntu and Debian have their own `libdb-dev` and `libdb++-dev` packages, but these will install
@@ -93,7 +93,7 @@ pass `--with-incompatible-bdb` to configure.
 
 Otherwise, you can build from self-compiled `depends` (see above).
 
-To build Peercoin without wallet, see [*Disable-wallet mode*](/doc/build-unix.md#disable-wallet-mode)
+To build Neon without wallet, see [*Disable-wallet mode*](/doc/build-unix.md#disable-wallet-mode)
 
 
 Optional (see `--with-miniupnpc` and `--enable-upnp-default`):
@@ -106,7 +106,7 @@ ZMQ dependencies (provides ZMQ API):
 
 GUI dependencies:
 
-If you want to build Peercoin-Qt, make sure that the required packages for Qt development
+If you want to build Neon-Qt, make sure that the required packages for Qt development
 are installed. Qt 5 is necessary to build the GUI.
 To build without GUI pass `--without-gui`.
 
@@ -118,7 +118,7 @@ libqrencode (optional) can be installed with:
 
     sudo apt-get install libqrencode-dev
 
-Once these are installed, they will be found by configure and a peercoin-qt executable will be
+Once these are installed, they will be found by configure and a neon-qt executable will be
 built by default.
 
 
@@ -148,7 +148,7 @@ libqrencode (optional) can be installed with:
 
 Notes
 -----
-The release is built with GCC and then "strip peercoind" to strip the debug
+The release is built with GCC and then "strip neond" to strip the debug
 symbols, which reduces the executable size by about 90%.
 
 
@@ -189,7 +189,7 @@ If you need to build Boost yourself:
 
 Security
 --------
-To help make your peercoin installation more secure by making certain attacks impossible to
+To help make your neon installation more secure by making certain attacks impossible to
 exploit even if a vulnerability is found, binaries are hardened by default.
 This can be disabled with:
 
@@ -211,7 +211,7 @@ Hardening enables the following features:
 
     To test that you have built PIE executable, install scanelf, part of paxutils, and use:
 
-    	scanelf -e ./peercoin
+    	scanelf -e ./neon
 
     The output should contain:
 
@@ -219,13 +219,13 @@ Hardening enables the following features:
     ET_DYN
 
 * _Non-executable Stack_: If the stack is executable then trivial stack-based buffer overflow exploits are possible if
-    vulnerable buffers are found. By default, peercoin should be built with a non-executable stack
+    vulnerable buffers are found. By default, neon should be built with a non-executable stack
     but if one of the libraries it uses asks for an executable stack or someone makes a mistake
     and uses a compiler extension which requires an executable stack, it will silently build an
     executable without the non-executable stack protection.
 
     To verify that the stack is non-executable after compiling use:
-    `scanelf -e ./peercoin`
+    `scanelf -e ./neon`
 
     The output should contain:
 	STK/REL/PTL
@@ -235,7 +235,7 @@ Hardening enables the following features:
 
 Disable-wallet mode
 --------------------
-When the intention is to run only a P2P node without a wallet, peercoin may be compiled in
+When the intention is to run only a P2P node without a wallet, neon may be compiled in
 disable-wallet mode with:
 
     ./configure --disable-wallet
@@ -263,8 +263,8 @@ Setup and Build Example: Arch Linux
 This example lists the steps necessary to setup and build a command line only, non-wallet distribution of the latest changes on Arch Linux:
 
     pacman -S git base-devel boost libevent python
-    git clone https://github.com/peercoin/peercoin.git
-    cd peercoin/
+    git clone https://github.com/neon/neon.git
+    cd neon/
     ./autogen.sh
     ./configure --disable-wallet --without-gui --without-miniupnpc
     make check
@@ -272,7 +272,7 @@ This example lists the steps necessary to setup and build a command line only, n
 Note:
 Enabling wallet support requires either compiling against a Berkeley DB newer than 4.8 (package `db`) using `--with-incompatible-bdb`,
 or building and depending on a local version of Berkeley DB 4.8.
-As mentioned above, when maintaining portability of the wallet between the standard Peercoin Core distributions and independently built
+As mentioned above, when maintaining portability of the wallet between the standard Neon Core distributions and independently built
 node software is desired, Berkeley DB 4.8 must be used.
 
 

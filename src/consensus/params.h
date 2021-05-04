@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CONSENSUS_PARAMS_H
-#define BITCOIN_CONSENSUS_PARAMS_H
+#ifndef NEON_CONSENSUS_PARAMS_H
+#define NEON_CONSENSUS_PARAMS_H
 
 #include <uint256.h>
 #include <limits>
@@ -52,7 +52,7 @@ struct Params {
     uint256 nMinimumChainWork;
     uint256 defaultAssumeValid;
 
-    /** peercoin stuff */
+    /** neon stuff */
     uint256 bnInitialHashTarget;
     int64_t nStakeTargetSpacing;
     int64_t nTargetSpacingWorkMax;
@@ -64,4 +64,4 @@ struct Params {
 };
 } // namespace Consensus
 
-#endif // BITCOIN_CONSENSUS_PARAMS_H
+#endif // NEON_CONSENSUS_PARAMS_H

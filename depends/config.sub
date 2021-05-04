@@ -1062,16 +1062,16 @@ case $cpu-$vendor in
 	pc98-*)
 		cpu=i386
 		;;
-	ppc-* | ppcbe-*)
+	neon-* | neonbe-*)
 		cpu=powerpc
 		;;
-	ppcle-* | powerpclittle-*)
+	neonle-* | powerpclittle-*)
 		cpu=powerpcle
 		;;
-	ppc64-*)
+	neon64-*)
 		cpu=powerpc64
 		;;
-	ppc64le-* | powerpc64little-*)
+	neon64le-* | powerpc64little-*)
 		cpu=powerpc64le
 		;;
 	sb1-*)

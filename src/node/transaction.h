@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_NODE_TRANSACTION_H
-#define BITCOIN_NODE_TRANSACTION_H
+#ifndef NEON_NODE_TRANSACTION_H
+#define NEON_NODE_TRANSACTION_H
 
 #include <attributes.h>
 #include <primitives/transaction.h>
@@ -29,4 +29,4 @@ struct NodeContext;
  */
 NODISCARD TransactionError BroadcastTransaction(NodeContext& node, CTransactionRef tx, std::string& err_string, bool relay, bool wait_callback);
 
-#endif // BITCOIN_NODE_TRANSACTION_H
+#endif // NEON_NODE_TRANSACTION_H

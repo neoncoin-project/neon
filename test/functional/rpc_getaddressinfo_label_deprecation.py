@@ -7,9 +7,9 @@ Test deprecation of the RPC getaddressinfo `label` field. It has been
 superceded by the `labels` field.
 
 """
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import NeonTestFramework
 
-class GetAddressInfoLabelDeprecationTest(BitcoinTestFramework):
+class GetAddressInfoLabelDeprecationTest(NeonTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
         self.setup_clean_chain = False

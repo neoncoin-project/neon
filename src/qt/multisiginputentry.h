@@ -1,8 +1,8 @@
-// Copyright (c) 2012-2021 The Peercoin developers
+// Copyright (c) 2012-2021 The Neon developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef PEERCOIN_QT_MULTISIGINPUTENTRY_H
-#define PEERCOIN_QT_MULTISIGINPUTENTRY_H
+#ifndef NEON_QT_MULTISIGINPUTENTRY_H
+#define NEON_QT_MULTISIGINPUTENTRY_H
 
 #include <uint256.h>
 
@@ -52,4 +52,4 @@ class MultisigInputEntry : public QFrame
     void on_pasteRedeemScriptButton_clicked();
 };
 
-#endif // PEERCOIN_QT_MULTISIGINPUTENTRY_H
+#endif // NEON_QT_MULTISIGINPUTENTRY_H

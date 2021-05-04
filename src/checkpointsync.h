@@ -1,8 +1,8 @@
-// Copyright (c) 2012-2021 The Peercoin developers
+// Copyright (c) 2012-2021 The Neon developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef PEERCOIN_CHECKPOINTSYNC_H
-#define PEERCOIN_CHECKPOINTSYNC_H
+#ifndef NEON_CHECKPOINTSYNC_H
+#define NEON_CHECKPOINTSYNC_H
 
 #define CHECKPOINT_MAX_SPAN (60 * 60 * 4) // max 4 hours before latest block
 
@@ -32,7 +32,7 @@ bool SetCheckpointPrivKey(std::string strPrivKey);
 bool SendSyncCheckpoint(uint256 hashCheckpoint);
 bool IsSyncCheckpointTooOld(unsigned int nSeconds);
 
-// Synchronized checkpoint (introduced first in ppcoin)
+// Synchronized checkpoint (introduced first in neonoin)
 class CUnsignedSyncCheckpoint
 {
 public:
@@ -126,4 +126,4 @@ public:
     bool ProcessSyncCheckpoint(CNode* pfrom);
 };
 
-#endif // PEERCOIN_CHECKPOINTSYNC_H
+#endif // NEON_CHECKPOINTSYNC_H

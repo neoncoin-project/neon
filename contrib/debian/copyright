@@ -1,12 +1,12 @@
-Upstream-Name: Peercoin
-Upstream-Contact: Stichting Peercoin Foundation <foundation@peercoin.net>
-Source: https://github.com/peercoin/peercoin
+Upstream-Name: Neon
+Upstream-Contact: Stichting Neon Foundation <foundation@neon.net>
+Source: https://github.com/neon/neon
 
 Files: *
-Copyright: 2011-2021 Peercoin Developers
-Copyright: 2009-2020, Bitcoin Core Developers
+Copyright: 2011-2021 Neon Developers
+Copyright: 2009-2020, Neon Core Developers
 License: Expat
-Comment: The Peercoin Developers encompasses the current developers listed on https://github.com/peercoin/peercoin,
+Comment: The Neon Developers encompasses the current developers listed on https://github.com/neon/neon,
          as well as the numerous contributors to the project.
 
 Files: debian/*
@@ -75,12 +75,12 @@ Copyright: Stephen Hutchings, Jonas Schnelli
 License: Expat
 Comment: Modifications of Stephen Hutchings' Typicons
 
-Files: src/qt/res/icons/bitcoin.*
-       share/pixmaps/bitcoin*
-       src/qt/res/src/bitcoin.svg
+Files: src/qt/res/icons/neon.*
+       share/pixmaps/neon*
+       src/qt/res/src/neon.svg
 Copyright: Bitboy, Jonas Schnelli
 License: public-domain
-Comment: Site: https://bitcointalk.org/?topic=1756.0
+Comment: Site: https://neontalk.org/?topic=1756.0
 
 Files: src/qt/res/icons/proxy.png
        src/qt/res/src/proxy.svg

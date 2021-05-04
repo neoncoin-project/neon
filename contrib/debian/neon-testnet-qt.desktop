@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Neon (testnet)
+Comment=Desktop allet for Neon Cryptocurrency (testnet)
+Comment[de]=Offizieller Client für die Kryptowährung Neon (testnet)
+Exec=neon-qt -testnet %u
+Terminal=false
+Type=Application
+Icon=/usr/share/pixmaps/neon-testnet128.png
+MimeType=x-scheme-handler/neon;
+Categories=Application;Network;

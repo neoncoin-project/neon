@@ -9,7 +9,7 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both bitcoind and bitcoin-qt, to make it harder for attackers to
+ * for both neond and neon-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
 const std::string CLIENT_NAME("Satoshi");
@@ -58,11 +58,11 @@ const std::string CLIENT_NAME("Satoshi");
 
 #ifndef BUILD_DESC
 #ifdef BUILD_SUFFIX
-#define BUILD_DESC BUILD_DESC_WITH_SUFFIX(PEERCOIN_VERSION_MAJOR, PEERCOIN_VERSION_MINOR, PEERCOIN_VERSION_REVISION, PEERCOIN_VERSION_BUILD, BUILD_SUFFIX)
+#define BUILD_DESC BUILD_DESC_WITH_SUFFIX(NEON_VERSION_MAJOR, NEON_VERSION_MINOR, NEON_VERSION_REVISION, NEON_VERSION_BUILD, BUILD_SUFFIX)
 #elif defined(GIT_COMMIT_ID)
-#define BUILD_DESC BUILD_DESC_FROM_COMMIT(PEERCOIN_VERSION_MAJOR, PEERCOIN_VERSION_MINOR, PEERCOIN_VERSION_REVISION, PEERCOIN_VERSION_BUILD, GIT_COMMIT_ID)
+#define BUILD_DESC BUILD_DESC_FROM_COMMIT(NEON_VERSION_MAJOR, NEON_VERSION_MINOR, NEON_VERSION_REVISION, NEON_VERSION_BUILD, GIT_COMMIT_ID)
 #else
-#define BUILD_DESC BUILD_DESC_FROM_UNKNOWN(PEERCOIN_VERSION_MAJOR, PEERCOIN_VERSION_MINOR, PEERCOIN_VERSION_REVISION, PEERCOIN_VERSION_BUILD)
+#define BUILD_DESC BUILD_DESC_FROM_UNKNOWN(NEON_VERSION_MAJOR, NEON_VERSION_MINOR, NEON_VERSION_REVISION, NEON_VERSION_BUILD)
 #endif
 #endif
 
@@ -82,7 +82,7 @@ std::string FormatFullVersion()
 }
 
 /**
- * Format the subversion field according to BIP 14 spec (https://github.com/bitcoin/bips/blob/master/bip-0014.mediawiki)
+ * Format the subversion field according to BIP 14 spec (https://github.com/neon/bips/blob/master/bip-0014.mediawiki)
  */
 std::string FormatSubVersion(const std::string& name, int nClientVersion, const std::vector<std::string>& comments)
 {
@@ -98,7 +98,7 @@ std::string FormatSubVersion(const std::string& name, int nClientVersion, const 
         ss << ")";
     }
     ss << "/";
-    ss << "Peercoin:" << FormatVersion(PEERCOIN_VERSION);
+    ss << "Neon:" << FormatVersion(NEON_VERSION);
     ss << "(" << CLIENT_BUILD << ")/";
     return ss.str();
 }

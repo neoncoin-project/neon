@@ -3,7 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/bitcoin-config.h>
+#include <config/neon-config.h>
 #endif
 
 #include <qt/splashscreen.h>
@@ -63,7 +63,7 @@ SplashScreen::SplashScreen(interfaces::Node& node, Qt::WindowFlags f, const Netw
     QRect rGradient(QPoint(0,0), splashSize);
     pixPaint.fillRect(rGradient, gradient);
 
-    // draw the bitcoin icon, expected size of PNG: 1024x1024
+    // draw the neon icon, expected size of PNG: 1024x1024
     const QSize requiredSize(100,100);
     QPixmap icon(networkStyle->getAppIcon().pixmap(requiredSize));
 

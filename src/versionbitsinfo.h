@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_VERSIONBITSINFO_H
-#define BITCOIN_VERSIONBITSINFO_H
+#ifndef NEON_VERSIONBITSINFO_H
+#define NEON_VERSIONBITSINFO_H
 
 struct VBDeploymentInfo {
     /** Deployment name */
@@ -14,4 +14,4 @@ struct VBDeploymentInfo {
 
 extern const struct VBDeploymentInfo VersionBitsDeploymentInfo[];
 
-#endif // BITCOIN_VERSIONBITSINFO_H
+#endif // NEON_VERSIONBITSINFO_H

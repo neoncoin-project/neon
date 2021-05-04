@@ -2,15 +2,15 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_VERSION_H
-#define BITCOIN_VERSION_H
+#ifndef NEON_VERSION_H
+#define NEON_VERSION_H
 
 /**
  * network protocol versioning
  */
 
 static const int PROTOCOL_VERSION = 70015;
-static const int OLD_VERSION = 70014; // peercoin: used to communicate with clients that don't know how to send PoS information in headers
+static const int OLD_VERSION = 70014; // neon: used to communicate with clients that don't know how to send PoS information in headers
 
 //! initial proto version, to be increased after version/verack negotiation
 static const int INIT_PROTO_VERSION = 209;
@@ -43,4 +43,4 @@ static const int SHORT_IDS_BLOCKS_VERSION = 70014;
 //! not banning for invalid compact blocks starts with this version
 static const int INVALID_CB_NO_BAN_VERSION = 70015;
 
-#endif // BITCOIN_VERSION_H
+#endif // NEON_VERSION_H

@@ -342,7 +342,7 @@ static UniValue getaddednodeinfo(const JSONRPCRequest& request)
                             {
                                 {RPCResult::Type::OBJ, "", "",
                                 {
-                                    {RPCResult::Type::STR, "address", "The bitcoin server IP and port we're connected to"},
+                                    {RPCResult::Type::STR, "address", "The neon server IP and port we're connected to"},
                                     {RPCResult::Type::STR, "connected", "connection, inbound or outbound"},
                                 }},
                             }},
@@ -761,7 +761,7 @@ static UniValue getnodeaddresses(const JSONRPCRequest& request)
     return ret;
 }
 
-// peercoin: send alert.  
+// neon: send alert.  
 UniValue sendalert(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 6)
@@ -827,7 +827,7 @@ UniValue sendalert(const JSONRPCRequest& request)
 
 #ifdef ENABLE_CHECKPOINTS
 // RPC commands related to sync checkpoints
-// get information of sync-checkpoint (first introduced in ppcoin)
+// get information of sync-checkpoint (first introduced in neonoin)
 UniValue getcheckpoint(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 0)
@@ -921,7 +921,7 @@ static const CRPCCommand commands[] =
     { "network",            "clearbanned",            &clearbanned,            {} },
     { "network",            "setnetworkactive",       &setnetworkactive,       {"state"} },
     { "network",            "getnodeaddresses",       &getnodeaddresses,       {"count"} },
-    // peercoin:
+    // neon:
 #ifdef ENABLE_CHECKPOINTS
     { "network",            "getcheckpoint",          &getcheckpoint,          {} },
     { "network",            "sendcheckpoint",         &sendcheckpoint,         {} },

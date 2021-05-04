@@ -1,4 +1,4 @@
-// Copyright (c) 2012-2021 The Peercoin developers
+// Copyright (c) 2012-2021 The Neon developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -35,9 +35,9 @@ const unsigned int nProtocolV06TestSwitchTime = 1508198400; // Tue 17 Oct 00:00:
 // Protocol switch time for 0.7 kernel protocol
 const unsigned int nProtocolV07SwitchTime     = 1552392000; // Tue 12 Mar 12:00:00 UTC 2019
 const unsigned int nProtocolV07TestSwitchTime = 1541505600; // Tue 06 Nov 12:00:00 UTC 2018
-// Switch time for new BIPs from bitcoin 0.16.x
-const uint32_t nBTC16BIPsSwitchTime = 1569931200; // Tue 01 Oct 12:00:00 UTC 2019
-const uint32_t nBTC16BIPsTestSwitchTime = 1554811200; // Tue 09 Apr 12:00:00 UTC 2019
+// Switch time for new BIPs from neon 0.16.x
+const uint32_t nNEON16BIPsSwitchTime = 1569931200; // Tue 01 Oct 12:00:00 UTC 2019
+const uint32_t nNEON16BIPsTestSwitchTime = 1554811200; // Tue 09 Apr 12:00:00 UTC 2019
 // Protocol switch time for v0.9 kernel protocol
 const unsigned int nProtocolV09SwitchTime     = 1591617600; // Mon  8 Jun 12:00:00 UTC 2020
 const unsigned int nProtocolV09TestSwitchTime = 1581940800; // Mon 17 Feb 12:00:00 UTC 2020
@@ -118,10 +118,10 @@ bool IsProtocolV07(unsigned int nTimeTx)
     return (nTimeTx >= (fTestNet? nProtocolV07TestSwitchTime : nProtocolV07SwitchTime));
 }
 
-bool IsBTC16BIPsEnabled(uint32_t nTimeTx)
+bool IsNEON16BIPsEnabled(uint32_t nTimeTx)
 {
     bool fTestNet = Params().NetworkIDString() != CBaseChainParams::MAIN;
-    return (nTimeTx >= (fTestNet? nBTC16BIPsTestSwitchTime : nBTC16BIPsSwitchTime));
+    return (nTimeTx >= (fTestNet? nNEON16BIPsTestSwitchTime : nNEON16BIPsSwitchTime));
 }
 
 // Whether a given timestamp is subject to new v0.9 protocol
@@ -448,7 +448,7 @@ static bool GetKernelStakeModifier(CBlockIndex* pindexPrev, uint256 hashBlockFro
         return GetKernelStakeModifierV03(pindexPrev, hashBlockFrom, nStakeModifier, nStakeModifierHeight, nStakeModifierTime, fPrintProofOfStake);
 }
 
-// peercoin kernel protocol
+// neon kernel protocol
 // coinstake must meet hash target according to the protocol:
 // kernel (input 0) must meet the formula
 //     hash(nStakeModifier + txPrev.block.nTime + txPrev.offset + txPrev.nTime + txPrev.vout.n + nTime) < bnTarget * nCoinDayWeight
@@ -647,7 +647,7 @@ bool IsSuperMajority(int minVersion, const CBlockIndex* pstart, unsigned int nRe
     return (nFound >= nRequired);
 }
 
-// peercoin: entropy bit for stake modifier if chosen by modifier
+// neon: entropy bit for stake modifier if chosen by modifier
 unsigned int GetStakeEntropyBit(const CBlock& block)
 {
     unsigned int nEntropyBit = 0;

@@ -1,0 +1,3 @@
+contrib/neond.bash-completion	neond
+contrib/neon-cli.bash-completion	neon-cli
+contrib/neon-tx.bash-completion	neon-tx

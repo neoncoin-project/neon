@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_WARNINGS_H
-#define BITCOIN_WARNINGS_H
+#ifndef NEON_WARNINGS_H
+#define NEON_WARNINGS_H
 
 #include <string>
 
@@ -21,4 +21,4 @@ void SetfLargeWorkInvalidChainFound(bool flag);
 std::string GetWarnings(bool verbose);
 
 extern std::string strMintWarning;
-#endif //  BITCOIN_WARNINGS_H
+#endif //  NEON_WARNINGS_H
