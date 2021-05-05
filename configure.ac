@@ -369,6 +369,10 @@ if test "x$CXXFLAGS_overridden" = "xno"; then
   AX_CHECK_COMPILE_FLAG([-Wimplicit-fallthrough],[NOWARN_CXXFLAGS="$NOWARN_CXXFLAGS -Wno-implicit-fallthrough"],,[[$CXXFLAG_WERROR]])
 fi
 
+if test `uname -m` = "armv7l"; then
+  CXXFLAGS="$CXXFLAGS -Wno-psabi"
+fi
+
 enable_sse42=no
 enable_sse41=no
 enable_avx2=no
