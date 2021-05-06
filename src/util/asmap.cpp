@@ -79,7 +79,7 @@ uint32_t Interpret(const std::vector<bool> &asmap, const std::vector<bool> &ip)
             jump = DecodeJump(pos, endpos);
             if (bits == 0) break;
             if (ip[ip.size() - bits]) {
-                if (jump >= endpos - pos) break;
+                if (jump >= (uint32_t)(endpos - pos)) break;
                 pos += jump;
             }
             bits--;

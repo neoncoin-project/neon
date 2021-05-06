@@ -29,6 +29,8 @@ std::string TransactionErrorString(const TransactionError err)
             return "PSBTs not compatible (different transactions)";
         case TransactionError::SIGHASH_MISMATCH:
             return "Specified sighash value does not match existing value";
+        case TransactionError::MAX_FEE_EXCEEDED:
+            return "Fee exceeds maximum configured by user (e.g. -maxtxfee, maxfeerate)";
         // no default case, so the compiler can warn about missing cases
     }
     assert(false);

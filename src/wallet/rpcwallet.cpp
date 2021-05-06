@@ -3341,7 +3341,7 @@ UniValue rescanblockchain(const JSONRPCRequest& request)
             }
         }
 
-        Optional<int> stop_height;
+        Optional<int> stop_height = MakeOptional(false, int());;
         if (!request.params[1].isNull()) {
             stop_height = request.params[1].get_int();
             if (*stop_height < 0 || !tip_height || *stop_height > *tip_height) {
@@ -3408,7 +3408,7 @@ UniValue listminting(const JSONRPCRequest& request)
     const CBlockIndex *p = GetLastBlockIndex(::ChainActive().Tip(), true);
     double difficulty = p->GetBlockDifficulty();
     int64_t nStakeMinAge = Params().GetConsensus().nStakeMinAge;
-    const CWallet::TxItems & txOrdered = pwallet->wtxOrdered;
+//    const CWallet::TxItems & txOrdered = pwallet->wtxOrdered;
 
     std::unique_ptr<interfaces::Wallet> iwallet = interfaces::MakeWallet(wallet);
     const auto& vwtx = iwallet->getWalletTxs();

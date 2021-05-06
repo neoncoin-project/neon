@@ -1228,7 +1228,7 @@ void static InvalidChainFound(CBlockIndex* pindexNew) EXCLUSIVE_LOCKS_REQUIRED(c
 
     LogPrintf("%s: invalid block=%s  height=%d  log2_trust=%.8g  moneysupply=%s  date=%s  moneysupply=%s\n", __func__,
       pindexNew->GetBlockHash().ToString(), pindexNew->nHeight,
-      log(pindexNew->nChainTrust.getdouble())/log(2.0), 
+      log(pindexNew->nChainTrust.getdouble())/log(2.0),
       FormatMoney(::ChainActive().Tip()->nMoneySupply),
       FormatISO8601DateTime(pindexNew->GetBlockTime()),
       FormatMoney(pindexNew->nMoneySupply));
@@ -3515,7 +3515,7 @@ bool ProcessNewBlockHeaders(int32_t& nPoSTemperature, const uint256& lastAccepte
 
         for (const CBlockHeader& header : headers) {
             bool fPoS = header.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE;
-            bool fHavePoW = !fPoS && ::BlockIndex().count(header.GetHash());
+//            bool fHavePoW = !fPoS && ::BlockIndex().count(header.GetHash());
 
             CBlockIndex *pindex = nullptr; // Use a temp pindex instead of ppindex to avoid a const_cast
             bool accepted = g_blockman.AcceptBlockHeader(header, state, chainparams, &pindex);
@@ -3532,7 +3532,7 @@ bool ProcessNewBlockHeaders(int32_t& nPoSTemperature, const uint256& lastAccepte
             if (fPoS) {
                 nPoSTemperature++;
             } else { // PoW
-                int d = ::ChainActive().Height() - pindex->nHeight;
+//                int d = ::ChainActive().Height() - pindex->nHeight;
 //                if (fHavePoW || d > 36)
 //                    nCooling = 0;
                 nPoSTemperature -= nCooling;
@@ -4929,7 +4929,7 @@ bool CheckBlockSignature(const CBlock& block)
 
     if (Solver(txout.scriptPubKey, vSolutions) != TX_PUBKEY)
         return false;
-    
+
     const valtype& vchPubKey = vSolutions[0];
     CPubKey key(vchPubKey);
     if (block.vchBlockSig.empty())
