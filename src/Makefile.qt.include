@@ -179,8 +179,6 @@ RES_ICONS = \
   qt/res/icons/neon.ico \
   qt/res/icons/neon_testnet.ico \
   qt/res/icons/neon.png \
-  qt/res/icons/neon.png \
-  qt/res/icons/neon_testnet.png \
   qt/res/icons/chevron.png \
   qt/res/icons/clock1.png \
   qt/res/icons/clock2.png \
@@ -205,8 +203,6 @@ RES_ICONS = \
   qt/res/icons/hd_enabled.png \
   qt/res/icons/history.png \
   qt/res/icons/minting.png \
-  qt/res/icons/multisig.png \
-  qt/res/icons/sign.png \
   qt/res/icons/lock_closed.png \
   qt/res/icons/lock_open.png \
   qt/res/icons/network_disabled.png \
@@ -216,7 +212,6 @@ RES_ICONS = \
   qt/res/icons/remove.png \
   qt/res/icons/send.png \
   qt/res/icons/synced.png \
-  qt/res/icons/transactions.png \
   qt/res/icons/transaction0.png \
   qt/res/icons/transaction2.png \
   qt/res/icons/transaction_abandoned.png \
@@ -226,7 +221,6 @@ RES_ICONS = \
   qt/res/icons/tx_output.png \
   qt/res/icons/tx_mined.png \
   qt/res/icons/warning.png \
-  qt/res/icons/verify.png \
   qt/res/images/about.png \
   qt/res/images/controls/caret-down.png \
   qt/res/images/controls/caret-up.png \
