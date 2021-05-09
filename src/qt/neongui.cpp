@@ -59,7 +59,6 @@
 #include <QSystemTrayIcon>
 #include <QTimer>
 #include <QToolBar>
-#include <QFontDatabase>
 #include <QDesktopServices>
 
 #include <QUrlQuery>
@@ -97,13 +96,6 @@ NeonGUI::NeonGUI(interfaces::Node& node, const PlatformStyle *_platformStyle, co
     QApplication::setWindowIcon(m_network_style->getTrayAndWindowIcon());
     setWindowIcon(m_network_style->getTrayAndWindowIcon());
     updateWindowTitle();
-
-    QFontDatabase::addApplicationFont(":/fonts/notosans-regular");
-    QFile styleFile(":/themes/default");
-    styleFile.open(QFile::ReadOnly);
-    QString styleSheet = QLatin1String(styleFile.readAll());
-    this->setStyleSheet(styleSheet);
-
 
     rpcConsole = new RPCConsole(node, _platformStyle, nullptr);
     helpMessageDialog = new HelpMessageDialog(node, this, false);
@@ -182,7 +174,15 @@ NeonGUI::NeonGUI(interfaces::Node& node, const PlatformStyle *_platformStyle, co
     progressBar = new GUIUtil::ProgressBar();
     progressBar->setAlignment(Qt::AlignCenter);
     progressBar->setVisible(false);
-    progressBar->setStyleSheet("QProgressBar { background-color: #8C8C8C; text-align: center; color: white; border: 1px solid #4b4b4b; } QProgressBar::chunk { background: #3cb054; margin: 0px; }");
+
+    // Override style sheet for progress bar for styles that have a segmented progress bar,
+    // as they make the text unreadable (workaround for issue #1071)
+    // See https://doc.qt.io/qt-5/gallery.html
+    QString curStyle = QApplication::style()->metaObject()->className();
+    if(curStyle == "QWindowsStyle" || curStyle == "QWindowsXPStyle")
+    {
+        progressBar->setStyleSheet("QProgressBar { background-color: #e8e8e8; border: 1px solid grey; border-radius: 7px; padding: 1px; text-align: center; } QProgressBar::chunk { background: QLinearGradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #FF8000, stop: 1 orange); border-radius: 7px; margin: 0px; }");
+    }
 
     statusBar()->addWidget(progressBarLabel);
     statusBar()->addWidget(progressBar);
@@ -378,18 +378,6 @@ void NeonGUI::createActions()
     showHelpMessageAction->setMenuRole(QAction::NoRole);
     showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible Neon command-line options").arg(PACKAGE_NAME));
 
-    openWebAction = new QAction(tr("&Website"), this);
-    openWebAction->setStatusTip(tr("Open the Neon website in a web browser."));
-
-    openDonateAction = new QAction(tr("&Donate"), this);
-    openDonateAction->setStatusTip(tr("Finacially support development of the Neon project."));
-
-    openChatroomAction = new QAction(tr("&Chatroom"), this);
-    openChatroomAction->setStatusTip(tr("Open the Neon Discord chat in a web browser."));
-
-    openForumAction = new QAction(tr("&Forum"), this);
-    openForumAction->setStatusTip(tr("Open talk.neon.net in a web browser."));
-
     connect(quitAction, &QAction::triggered, qApp, QApplication::quit);
     connect(aboutAction, &QAction::triggered, this, &NeonGUI::aboutClicked);
     connect(aboutQtAction, &QAction::triggered, qApp, QApplication::aboutQt);
@@ -399,11 +387,6 @@ void NeonGUI::createActions()
     connect(openRPCConsoleAction, &QAction::triggered, this, &NeonGUI::showDebugWindow);
     // prevents an open debug window from becoming stuck/unusable on client shutdown
     connect(quitAction, &QAction::triggered, rpcConsole, &QWidget::hide);
-
-    connect(openWebAction, SIGNAL(triggered()), this, SLOT(openWeb()));
-    connect(openDonateAction, SIGNAL(triggered()), this, SLOT(openDonate()));
-    connect(openChatroomAction, SIGNAL(triggered()), this, SLOT(openChatroom()));
-    connect(openForumAction, SIGNAL(triggered()), this, SLOT(openForum()));
 
 #ifdef ENABLE_WALLET
     if(walletFrame)
@@ -552,10 +535,6 @@ void NeonGUI::createMenuBar()
     }
 
     QMenu *help = appMenuBar->addMenu(tr("&Help"));
-    help->addAction(openWebAction);
-    help->addAction(openDonateAction);
-    help->addAction(openChatroomAction);
-    help->addAction(openForumAction);
     help->addAction(showHelpMessageAction);
     help->addSeparator();
     help->addAction(aboutAction);
@@ -566,14 +545,10 @@ void NeonGUI::createToolBars()
 {
     if(walletFrame)
     {
-        QLabel *imageLogo = new QLabel;
-        imageLogo->setPixmap(QPixmap(":/images/logo"));
-        imageLogo->setObjectName("logo");
         QToolBar *toolbar = addToolBar(tr("Tabs toolbar"));
         appToolBar = toolbar;
         toolbar->setMovable(false);
-        toolbar->setToolButtonStyle(Qt::ToolButtonTextOnly);
-        toolbar->addWidget(imageLogo);
+	toolbar->setToolButtonStyle(Qt::ToolButtonTextOnly);
         toolbar->setContextMenuPolicy(Qt::PreventContextMenu);
         toolbar->setMovable(false);
         toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
@@ -920,22 +895,6 @@ void NeonGUI::gotoSignMessageTab(QString addr)
 void NeonGUI::gotoVerifyMessageTab(QString addr)
 {
     if (walletFrame) walletFrame->gotoVerifyMessageTab(addr);
-}
-
-void NeonGUI::openWeb() {
-    QDesktopServices::openUrl(QUrl("https://neon.net"));
-}
-
-void NeonGUI::openDonate() {
-    QDesktopServices::openUrl(QUrl("https://www.neon.net/foundation"));
-}
-
-void NeonGUI::openChatroom() {
-    QDesktopServices::openUrl(QUrl("https://discord.gg/XPxfwtG"));
-}
-
-void NeonGUI::openForum() {
-    QDesktopServices::openUrl(QUrl("https://talk.neon.net"));
 }
 
 #endif // ENABLE_WALLET

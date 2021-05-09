@@ -155,10 +155,6 @@ private:
     QAction* m_open_wallet_action{nullptr};
     QMenu* m_open_wallet_menu{nullptr};
     QAction* m_close_wallet_action{nullptr};
-    QAction* openWebAction = nullptr;
-    QAction* openDonateAction = nullptr;
-    QAction* openChatroomAction = nullptr;
-    QAction* openForumAction = nullptr;
     QAction* m_wallet_selector_label_action = nullptr;
     QAction* m_wallet_selector_action = nullptr;
 
@@ -295,12 +291,6 @@ public Q_SLOTS:
     void showDebugWindowActivateConsole();
     /** Show help message dialog */
     void showHelpMessageClicked();
-
-    // Open chatroom / forum URL in the system's browser.
-    void openWeb();
-    void openDonate();
-    void openChatroom();
-    void openForum();
 
 #ifndef Q_OS_MAC
     /** Handle tray icon clicked */

@@ -48,10 +48,7 @@
         <file alias="proxy">res/icons/proxy.png</file>
     </qresource>
     <qresource prefix="/images">
-        <file alias="logo">res/images/logo.png</file>
-        <file alias="logomask">res/images/logomask.png</file>
-        <file alias="scarab">res/images/scarab.png</file>
-        <file alias="transparent">res/images/transparent-background.png</file>
+        <file alias="splash">res/images/splash.png</file>
     </qresource>
     <qresource prefix="/movies">
         <file alias="spinner-000">res/movies/spinner-000.png</file>
@@ -90,17 +87,5 @@
         <file alias="spinner-033">res/movies/spinner-033.png</file>
         <file alias="spinner-034">res/movies/spinner-034.png</file>
         <file alias="spinner-035">res/movies/spinner-035.png</file>
-    </qresource>
-    <qresource prefix="/themes">
-        <file alias="default">res/themes/default.qss</file>
-    </qresource>
-    <qresource prefix="/fonts">
-        <file alias="notosans-regular">res/fonts/NotoSans-Regular.ttf</file>
-    </qresource>
-    <qresource prefix="/controls">
-        <file alias="caret-down">res/images/controls/caret-down.png</file>
-        <file alias="caret-up">res/images/controls/caret-up.png</file>
-        <file alias="scroll-down">res/images/controls/scroll-down.png</file>
-        <file alias="scroll-up">res/images/controls/scroll-up.png</file>
     </qresource>
 </RCC>

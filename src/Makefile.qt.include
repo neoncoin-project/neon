@@ -221,17 +221,7 @@ RES_ICONS = \
   qt/res/icons/tx_output.png \
   qt/res/icons/tx_mined.png \
   qt/res/icons/warning.png \
-  qt/res/images/about.png \
-  qt/res/images/controls/caret-down.png \
-  qt/res/images/controls/caret-up.png \
-  qt/res/images/controls/scroll-down.png \
-  qt/res/images/controls/scroll-up.png \
-  qt/res/images/logo.png \
-  qt/res/images/logomask.png \
-  qt/res/images/scarab.png \
   qt/res/images/splash.png \
-  qt/res/images/splash_testnet.png \
-  qt/res/images/transparent-background.png \
   qt/res/movies/spinner-000.png \
   qt/res/movies/spinner-001.png \
   qt/res/movies/spinner-002.png \
@@ -267,9 +257,7 @@ RES_ICONS = \
   qt/res/movies/spinner-032.png \
   qt/res/movies/spinner-033.png \
   qt/res/movies/spinner-034.png \
-  qt/res/movies/spinner-035.png \
-  qt/res/themes/default.qss \
-  qt/res/fonts/NotoSans-Regular.ttf
+  qt/res/movies/spinner-035.png
 
 NEON_QT_BASE_CPP = \
   qt/bantablemodel.cpp \

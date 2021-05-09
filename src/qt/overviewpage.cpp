@@ -56,11 +56,8 @@ public:
         bool confirmed = index.data(TransactionTableModel::ConfirmedRole).toBool();
         QVariant value = index.data(Qt::ForegroundRole);
         QColor foreground = QColor(0x4b, 0x4b, 0x4b);
-        QFont font = QFont();
-        font.setPixelSize(20);
 
         painter->setPen(foreground);
-        painter->setFont(font);
         QRect boundingRect;
         painter->drawText(addressRect, Qt::AlignLeft|Qt::AlignVCenter, address, &boundingRect);
 
@@ -84,8 +81,6 @@ public:
             foreground = COLOR_POSITIVE;
         }
         painter->setPen(foreground);
-        font.setPixelSize(14);
-        painter->setFont(font);
         QString amountText = NeonUnits::formatWithUnit(unit, amount, true, NeonUnits::separatorAlways);
         if(!confirmed)
         {
