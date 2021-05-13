@@ -1716,6 +1716,11 @@ bool NeonContextualBlockChecks(const CBlock& block, BlockValidationState& state,
     pindex->hashProofOfStake = hashProofOfStakeBackup;
   // compute nStakeModifierChecksum end
 
+    //GENESIS: Get the checksum of the genesis block for kernel.cpp checkpoint
+#ifdef GENESIS
+    LogPrintf("[GENESIS GENERATION] : nStakeModifierChecksum=%08x\n", nStakeModifierChecksum);
+#endif
+
     if (!CheckStakeModifierCheckpoints(pindex->nHeight, nStakeModifierChecksum))
         return error("ConnectBlock() : Rejected by stake modifier checkpoint height=%d, modifier=0x%016llx", pindex->nHeight, nStakeModifier);
 
